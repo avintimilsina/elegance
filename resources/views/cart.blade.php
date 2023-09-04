@@ -12,9 +12,9 @@
                         @foreach ($items as $hash => $item)
                             <li class="flex py-6">
                                 <div class="flex-shrink-0">
-                                    {{-- <img src="{{$item->getImageUrl()}}"
+                                    <img src="{{ head($item->getExtraInfo()) }}"
                                         alt="Front side of mint cotton t-shirt with wavey lines pattern."
-                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> --}}
+                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                 </div>
 
                                 <div class="ml-4 flex flex-1 flex-col sm:ml-6">
@@ -24,7 +24,8 @@
                                                 <a href="#"
                                                     class="font-medium text-gray-700 hover:text-gray-800">{{ $item->getTitle() }}</a>
                                             </h4>
-                                            <p class="ml-4 text-sm font-medium text-gray-900">{{ $item->getPrice() }}</p>
+                                            <p class="ml-4 text-sm font-medium text-gray-900">RS
+                                                {{ $item->getPrice() * $item->getQuantity() }}</p>
                                         </div>
                                     </div>
 
@@ -38,7 +39,7 @@
                                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                                     clip-rule="evenodd" />
                                             </svg>
-                                            <span>In stock {{ $item->getQuantity() }}</span>
+                                            <span>Quantity: {{ $item->getQuantity() }}</span>
                                         </p>
                                         <div class="ml-4">
 
