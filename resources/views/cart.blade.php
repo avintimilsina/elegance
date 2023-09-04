@@ -12,7 +12,7 @@
                         @foreach ($items as $hash => $item)
                             <li class="flex py-6">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ head($item->getExtraInfo()) }}"
+                                    <img src="{{ $item->getTitle() }}"
                                         alt="Front side of mint cotton t-shirt with wavey lines pattern."
                                         class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                 </div>
