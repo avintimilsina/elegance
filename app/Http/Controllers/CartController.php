@@ -22,6 +22,7 @@ class CartController extends Controller
             'title' => $product->name,
             'quantity' => (int) $request->quantity,
             'price' => $product->price,
+            'imageUrl' => $product->imageUrl
         ]);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
@@ -48,5 +49,4 @@ class CartController extends Controller
 
         return back();
     }
-
 }

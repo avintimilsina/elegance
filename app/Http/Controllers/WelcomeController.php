@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class WelcomeController extends Controller
 {
     public function index(Request $request)
     {
@@ -25,21 +25,8 @@ class ProductController extends Controller
         }
 
         // dd($products->imageUrl);
-        return view('products.list', [
+        return view('welcome', [
             'products' => $products,
-            'categories' => $categories,
-        ]);
-    }
-
-    public function show($slug)
-    {
-        $product = Product::where('slug', $slug)->first();
-        // dd($product->categories->toArray());
-        $products = Product::limit(4)->get();
-        $categories = Category::limit(11)->get();
-        return view('products.show', [
-            'products' => $products,
-            'product' => $product,
             'categories' => $categories,
         ]);
     }

@@ -1,220 +1,93 @@
 @extends('layout')
 @section('content')
-    <section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        <ul>
-                            @foreach ($categories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
-                            @endforeach
+    <div class="bg-white">
+        <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <!-- Product details -->
+            <div class="lg:max-w-lg lg:self-end">
+                <nav aria-label="Breadcrumb">
+                    <ol role="list" class="flex items-center space-x-2">
+                        <li>
+                            <div class="flex items-center text-sm">
+                                <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Products</a>
 
-                        </ul>
-                    </div>
+                                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    aria-hidden="true" class="ml-2 h-5 w-5 flex-shrink-0 text-gray-300">
+                                    <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                                </svg>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="mt-4">
+                    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $product->name }}</h1>
                 </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
+
+                <section aria-labelledby="information-heading" class="mt-4">
+                    <h2 id="information-heading" class="sr-only">Product information</h2>
+
+                    <div class="flex items-center">
+                        <p class="text-lg text-gray-900 sm:text-xl">{{ $product->formatted_amount() }}</p>
+
                     </div>
+
+                    <div class="mt-4 space-y-6">
+                        <p id="desc-text" class="text-base text-gray-500">{{ $product->information }}</p>
+                    </div>
+
+                    <div class="mt-6 flex items-center">
+                        <svg class="h-5 w-5 flex-shrink-0 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <p class="ml-2 text-sm text-gray-500"> {{ $product->quantity }} In stock and ready to ship</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Product image -->
+            <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+                <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
+                    <img src="{{ $product->imageUrl }}"
+                        alt="Model wearing light green backpack with black canvas straps and front zipper pouch."
+                        class="h-full w-full object-cover object-center">
                 </div>
             </div>
+
+
+            <div class="mt-10">
+                <form method="post" action="/cart" class="flex flex-row">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                    <div class="product__details__quantity ">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1" name="quantity">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Add
+                        to Cart</button>
+                </form>
+
+            </div>
+            <div class="mt-6 text-center">
+                <a href="#" class="group inline-flex text-base font-medium">
+                    <svg class="mr-2 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                    <span class="text-gray-500 hover:text-gray-700">3 months Warranty</span>
+                </a>
+            </div>
+            </form>
+            </section>
         </div>
-    </section>
-    <!-- Hero Section End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Product Details Section Begin -->
-
-    <section class="product-details spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="@if ($product->images != null && count($product->images) > 0) {{ Storage::url($product->images[0]) }}@else img/product/product-1.jpg @endif"
-                                alt="">
-                        </div>
-                        <div class="product__details__pic__slider owl-carousel">
-                            @if ($product->images && count($product->images) > 0)
-                                @foreach ($product->images as $image)
-                                    <img data-imgbigurl="{{ Storage::url($image) }}" src="{{ Storage::url($image) }}"
-                                        alt="">
-                                @endforeach
-                            @endif
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3>{{ $product->name }}</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div>
-                        <div class="product__details__price">{{ $product->formatted_amount() }}</div>
-                        <p>{ !!$product->description !!}</p>
-                        <form method="post" action="/cart">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                            <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1" name="quantity">
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="primary-btn">ADD TO CART</button>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        </form>
-                        <ul>
-                            <li><b>Availability</b> <span>{{ $product->quantity > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}</span>
-                            </li>
-                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span>0.5 kg</span></li>
-                            <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Information</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews <span>(1)</span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Description</h6>
-                                    <p>{{ $product->description }}</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Information</h6>
-                                    <p>{{ $product->information }}</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Review</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- Product Details Section End -->
-
-    <!-- Related Product Section Begin -->
-    <section class="related-product">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach ($products as $relatedProduct)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">{{ $relatedProduct->name }}</a></h6>
-                                <h5>{{ $relatedProduct->formatted_amount() }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </section>
-    <!-- Related Product Section End -->
+    </div>
+    </div>
 @endsection

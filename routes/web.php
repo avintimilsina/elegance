@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use Faker\Provider\Payment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,7 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-   return view('welcome');
-});
+Route::get('/',  [WelcomeController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'authenticate']);
 
