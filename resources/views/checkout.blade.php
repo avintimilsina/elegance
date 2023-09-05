@@ -5,16 +5,19 @@
         <div class="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 class="sr-only">Checkout</h2>
 
-            <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+            <form action={{ route('checkout.store') }} method="post" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+                @csrf
                 <div>
                     <div>
                         <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
 
-                        <div class="mt-4">
-                            <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                            <div class="mt-1">
-                                <input type="email" id="email-address" name="email-address" autocomplete="email"
+                        <div class="sm:col-span-2">
+                            <div class="mt-1" @if ($errors->has('email')) invalid @endif">
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address </label>
+                                <input type="text" name="email" value="{{ old('email') }}"
                                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <small> {{ $errors->first('email') }}</small>
+
                             </div>
                         </div>
                     </div>
@@ -24,95 +27,88 @@
 
                         <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                             <div>
-                                <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
-                                <div class="mt-1">
-                                    <input type="text" id="first-name" name="first-name" autocomplete="given-name"
+                                <div class="mt-1" @if ($errors->has('first_name')) invalid @endif">
+                                    <label for="first_name" class="block text-sm font-medium text-gray-700">First
+                                        name</label>
+                                    <input type="text" name="first_name" value="{{ old('first_name') }}"
                                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('first_name') }}</small>
+
                                 </div>
                             </div>
 
                             <div>
-                                <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                                <div class="mt-1">
-                                    <input type="text" id="last-name" name="last-name" autocomplete="family-name"
+                                <div class="mt-1" @if ($errors->has('last_name')) invalid @endif">
+                                    <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                    <input type="text" name="last_name" value="{{ old('last_name') }}"
                                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('last_name') }}</small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="mt-1" @if ($errors->has('address')) invalid @endif">
+                                    <label for="address" class="block text-sm font-medium text-gray-700">Address </label>
+                                    <input type="text" name="address" value="{{ old('address') }}"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('address') }}</small>
+
+                                </div>
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+                                <div class="mt-1" @if ($errors->has('district')) invalid @endif">
+                                    <label for="district" class="block text-sm font-medium text-gray-700">District </label>
+                                    <input type="text" name="district" value="{{ old('district') }}"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('district') }}</small>
+
+                                </div>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <div class="mt-1" @if ($errors->has('country')) invalid @endif">
+                                    <label for="country" class="block text-sm font-medium text-gray-700">Country </label>
+                                    <input type="text" name="country" value="{{ old('country') }}"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('country') }}</small>
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="mt-1" @if ($errors->has('province')) invalid @endif">
+                                    <label for="province" class="block text-sm font-medium text-gray-700">Province </label>
+                                    <input type="text" name="province" value="{{ old('province') }}"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('province') }}</small>
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="mt-1" @if ($errors->has('zip')) invalid @endif">
+                                    <label for="zip" class="block text-sm font-medium text-gray-700">Zip Code</label>
+                                    <input type="text" name="zip" value="{{ old('zip') }}"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <small> {{ $errors->first('zip') }}</small>
+
                                 </div>
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                                <div class="mt-1">
-                                    <input type="text" name="company" id="company"
+                                <div class="mt-1" @if ($errors->has('phone')) invalid @endif">
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone </label>
+                                    <input type="text" name="phone" value="{{ old('phone') }}"
                                         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
+                                    <small> {{ $errors->first('phone') }}</small>
 
-                            <div class="sm:col-span-2">
-                                <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                                <div class="mt-1">
-                                    <input type="text" name="address" id="address" autocomplete="street-address"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <label for="apartment" class="block text-sm font-medium text-gray-700">Apartment, suite,
-                                    etc.</label>
-                                <div class="mt-1">
-                                    <input type="text" name="apartment" id="apartment"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                                <div class="mt-1">
-                                    <input type="text" name="city" id="city" autocomplete="address-level2"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                                <div class="mt-1">
-                                    <select id="country" name="country" autocomplete="country-name"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>Mexico</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="region" class="block text-sm font-medium text-gray-700">State /
-                                    Province</label>
-                                <div class="mt-1">
-                                    <input type="text" name="region" id="region" autocomplete="address-level1"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="postal-code" class="block text-sm font-medium text-gray-700">Postal code</label>
-                                <div class="mt-1">
-                                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                                <div class="mt-1">
-                                    <input type="text" name="phone" id="phone" autocomplete="tel"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
                     <!-- Payment -->
                     <div class="mt-10 border-t border-gray-200 pt-10">
                         <h2 class="text-lg font-medium text-gray-900">Payment</h2>
@@ -120,26 +116,22 @@
                         <fieldset class="mt-4">
                             <legend class="sr-only">Payment type</legend>
                             <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                                <div class="flex items-center">
-                                    <input id="credit-card" name="payment-type" type="radio" checked
-                                        class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">Credit
-                                        card</label>
+                                <div class="checkout__input__checkbox">
+                                    <label for="khalti">
+                                        Khalti
+                                        <input type="radio" id="khalti" name="payment_gateway" value="khalti"
+                                            @if (old('payment_gateway') == 'khalti') checked @endif>
+                                        <span class="checkmark"></span>
+                                    </label>
                                 </div>
 
-                                <div class="flex items-center">
-                                    <input id="paypal" name="payment-type" type="radio"
+                                {{-- <div class="flex items-center">
+                                    <input type="radio" id="khalti" name="payment_gateway" value="khalti"
+                                        @if (old('payment_gateway') == 'khalti') checked @endif
                                         class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    <label for="paypal"
-                                        class="ml-3 block text-sm font-medium text-gray-700">PayPal</label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="etransfer" name="payment-type" type="radio"
-                                        class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    <label for="etransfer"
-                                        class="ml-3 block text-sm font-medium text-gray-700">eTransfer</label>
-                                </div>
+                                    <label for="khalti" class="ml-3 block text-sm font-medium text-gray-700">Khalti
+                                    </label>
+                                </div> --}}
                             </div>
                         </fieldset>
                     </div>
@@ -153,8 +145,8 @@
                             @foreach ($items as $item)
                                 <li class="flex py-6 px-4 sm:px-6">
                                     <div class="flex-shrink-0">
-                                        <img src="{{ $item->getTitle() }}" alt="Front of men&#039;s Basic Tee in black."
-                                            class="w-20 rounded-md">
+                                        <img src="{{ head($item->getExtraInfo()) }}"
+                                            alt="Front of men&#039;s Basic Tee in black." class="w-20 rounded-md">
                                     </div>
 
                                     <div class="ml-6 flex flex-1 flex-col">
@@ -171,7 +163,6 @@
                                                 <button type="button"
                                                     class="-m-2.5 flex items-center justify-center bg-white p-2.5 text-gray-400 hover:text-gray-500">
                                                     <span class="sr-only">Remove</span>
-                                                    <!-- Heroicon name: mini/trash -->
                                                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                         <path fill-rule="evenodd"
@@ -197,7 +188,6 @@
                                 </li>
                             @endforeach
 
-                            <!-- More products... -->
                         </ul>
                         <dl class="space-y-6 border-t border-gray-200 py-6 px-4 sm:px-6">
                             <div class="flex items-center justify-between">

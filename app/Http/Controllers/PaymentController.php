@@ -20,7 +20,6 @@ class PaymentController extends Controller
 
         if ($paymentGateway == 'cod') {
             return view('payments.cod');
-
         }
         if ($paymentGateway == 'khalti') {
 
@@ -32,9 +31,10 @@ class PaymentController extends Controller
                 'purchase_order_name' => "ORDER" . $order->tracking_id,
             ];
 
-
-            $response = Http::
-                withHeaders([
+            // dd(config('khalti.live_secret_key'));
+            // dd(config('khalti.base_url'));
+            // dd($parameters);
+            $response = Http::withHeaders([
                     'Authorization' => 'Key ' . config('khalti.live_secret_key')
                 ])->post(config('khalti.base_url') . '/epayment/initiate/', $parameters);
 
@@ -59,8 +59,7 @@ class PaymentController extends Controller
             'pidx' => $data['pidx']
         ];
 
-        $response = Http::
-            withHeaders([
+        $response = Http::withHeaders([
                 'Authorization' => 'Key ' . config('khalti.live_secret_key')
             ])->post(config('khalti.base_url') . '/epayment/lookup/', $pidx);
 

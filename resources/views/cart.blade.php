@@ -12,7 +12,7 @@
                         @foreach ($items as $hash => $item)
                             <li class="flex py-6">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ $item->getTitle() }}"
+                                    <img src="{{ head($item->getExtraInfo()) }}"
                                         alt="Front side of mint cotton t-shirt with wavey lines pattern."
                                         class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                 </div>
@@ -31,7 +31,6 @@
 
                                     <div class="mt-4 flex flex-1 items-end justify-between">
                                         <p class="flex items-center space-x-2 text-sm text-gray-700">
-                                            <!-- Heroicon name: mini/check -->
                                             <svg class="h-5 w-5 flex-shrink-0 text-green-500"
                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                                 aria-hidden="true">

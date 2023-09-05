@@ -65,11 +65,10 @@
 
     <main>
 
-        <!-- Featured section -->
         <section aria-labelledby="cause-heading">
             <div class="relative bg-gray-800 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
                 <div class="absolute inset-0 overflow-hidden">
-                    <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-feature-section-full-width.jpg"
+                    <img src="img/welcomeBanner.jpg"
                         alt="" class="h-full w-full object-cover object-center">
                 </div>
                 <div aria-hidden="true" class="absolute inset-0 bg-gray-900 bg-opacity-50"></div>

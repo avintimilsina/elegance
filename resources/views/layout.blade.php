@@ -28,21 +28,11 @@
     <nav aria-label="Top" class="relative z-20 bg-white bg-opacity-90 backdrop-blur-xl backdrop-filter">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center">
-                <button type="button" class="rounded-md bg-white p-2 text-gray-400 lg:hidden">
-                    <span class="sr-only">Open menu</span>
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                </button>
 
-                <!-- Logo -->
                 <div class="ml-4 flex lg:ml-0">
-                    <a href="#">
+                    <a href="/">
                         <span class="sr-only">Elegance</span>
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="">
+                        <img class="h-14 w-auto" src="logo.svg" alt="">
                     </a>
                 </div>
 
