@@ -117,6 +117,14 @@
                             <legend class="sr-only">Payment type</legend>
                             <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                                 <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Cash on delivery
+                                        <input type="radio" id="payment" name="payment_gateway" value="cod"
+                                            @if (old('payment_gateway') == 'cod') checked @endif>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
                                     <label for="khalti">
                                         Khalti
                                         <input type="radio" id="khalti" name="payment_gateway" value="khalti"
@@ -212,6 +220,9 @@
                             <button type="submit"
                                 class="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Confirm
                                 order</button>
+                                {{-- <a href="/thankyou"
+                                class="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Confirm
+                                order</a> --}}
                         </div>
                     </div>
                 </div>
